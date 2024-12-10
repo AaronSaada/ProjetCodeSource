@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 
 /*
 axios.get('https://dog.ceo/api/breeds/list/all')
@@ -17,14 +17,14 @@ axios.get('https://dog.ceo/api/breeds/list/all')
 */
 
 const doRequest = async () => {
-    try{
-        const response = await axios.get('https://dog.ceo/api/breeds/list/all')
-        console.log(response.data)
-    }catch(err){
-        console.error(err)
-    }finally{
-        console.log("Request finished")
-    }
+  try {
+    const response = await axios.get('https://dog.ceo/api/breeds/list/all')
+    console.log(response.data)
+  } catch (err) {
+    console.error(err)
+  } finally {
+    console.log('Request finished')
+  }
 }
 
 doRequest()
