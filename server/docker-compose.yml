@@ -1,0 +1,21 @@
+version: "3"
+services:
+  db:
+    container_name: mysql-80
+    image: mysql:8.0
+    platform: linux/amd64
+    ports:
+      - "3307:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: yoo
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: gosman
+      MYSQL_PASSWORD: yoo
+    volumes:
+      - ./dbdata:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
