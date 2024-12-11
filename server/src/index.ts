@@ -1,4 +1,5 @@
 import express from 'express'
+import { AppDataSource } from './dataSource'
 
 const app = express()
 
@@ -16,6 +17,8 @@ app.post('/login', (req, res) => {
   }
 })
 
-app.listen(3000, () => {
-  console.log("Listening on port 3000")
+AppDataSource.initialize().then(() => {
+  app.listen(3001, () => {
+    console.log("Listening on port 3001")
+  })
 })
