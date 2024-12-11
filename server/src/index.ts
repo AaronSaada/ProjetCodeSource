@@ -1,12 +1,13 @@
 import express from 'express'
 import { AppDataSource } from './dataSource'
+import { userController } from './modules/user/userController'
 
 const app = express()
 
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.send('Hello World !')
+  res.end(`Hello World !`)
 })
 
 app.post('/login', (req, res) => {
@@ -16,6 +17,8 @@ app.post('/login', (req, res) => {
     res.sendStatus(401)
   }
 })
+
+app.use('/users', userController)
 
 AppDataSource.initialize().then(() => {
   app.listen(3001, () => {
