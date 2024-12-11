@@ -22,11 +22,15 @@ userController.get('/' , async (req, res) => {
 
 userController.post('/', validator.body(querySchema), async (req, res) => {
 
-    res.send(await userRepository.save({
-        login: req.body.login,
-        password: req.body.password
-    }));
-
+    try{
+        res.send(await userRepository.save({
+            login: req.body.login,
+            password: req.body.password
+        }));
+    } catch(error: any){
+        res.status(400).send({err: "L'utilisateur existe déjà", error : error.message, detail: error.details})
+    }
+    
 })
 
 userController.get('/:id', validator.params(getSchema), async (req, res) => {
