@@ -9,7 +9,8 @@ const validator = createValidator()
 
 const querySchema = Joi.object({
   login: Joi.string().required(),
-  password: Joi.string().required()
+  password: Joi.string().required(),
+  role: Joi.string()
 })
 
 const getSchema = Joi.object({
@@ -17,7 +18,13 @@ const getSchema = Joi.object({
 })
 
 userController.get('/' , async (req, res) => {
-    res.send(await userRepository.find())
+    
+    if(req.body.role == "admin"){
+        res.send(await userRepository.find())
+    } else{
+        res.send("Vous n'avez pas les droits pour effectuer cette action.")
+    }
+    
 })
 
 userController.post('/', validator.body(querySchema), async (req, res) => {
@@ -25,7 +32,8 @@ userController.post('/', validator.body(querySchema), async (req, res) => {
     try{
         res.send(await userRepository.save({
             login: req.body.login,
-            password: req.body.password
+            password: req.body.password,
+            role: req.body.role
         }));
     } catch(error: any){
         res.status(400).send({err: "L'utilisateur existe déjà", error : error.message, detail: error.details})

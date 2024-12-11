@@ -10,6 +10,7 @@ const validator = createValidator()
 const loginSchema = Joi.object({
   login: Joi.string().required(),
   password: Joi.string().required(),
+  role: Joi.string()
 })
 
 authController.post(
@@ -19,11 +20,13 @@ authController.post(
     const user = await userRepository.findOneBy({
       login: req.body.login,
       password: req.body.password,
+      role: req.body.role
     })
     if (user) {
       const token = jwt.sign(
         {
           id: user.id,
+          role: user.role
         },
         'shhhhhhared-secret',
         {
