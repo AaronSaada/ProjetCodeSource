@@ -24,7 +24,7 @@ jobs:
 
       - name: Run git pull on remote server
         run: |
-          ssh $SSH_USER@$variables.SSH_HOST << EOF
+          ssh $SSH_USER@$SSH_HOST << EOF
             cd /home/admin/ProjetCodeSource
             git pull origin main
           EOF
