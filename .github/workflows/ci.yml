@@ -15,18 +15,33 @@ jobs:
       - name: Print a message
         run: echo "A push has been detected on the main branch!"
 
-      - name: Update packages
+      - name: Build Docker image
         run: |
-          sudo apt-get update && sudo apt-get upgrade -y
+          docker build -t deploy-image .
 
-      - name: Install OpenSSH client
-        run: sudo apt-get install -y openssh-client
-
-      - name: Setup SSH key
+      - name: Run Docker container for deployment
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > C:/Users/Aaron/.ssh
-          chmod 600 C:/Users/Aaron/.ssh
+          docker run --rm \
+            -e SSH_PRIVATE_KEY="${{ secrets.SSH_PRIVATE_KEY }}" \
+            -e SSH_HOST="${{ secrets.SSH_HOST }}" \
+            deploy-image /bin/bash -c "
+              # Copier la clé SSH dans le conteneur
+              echo \"\$SSH_PRIVATE_KEY\" > /root/.ssh/SSHKey && \
+              chmod 600 /root/.ssh/id_rsa && \
+              
+              # Supprimer la clé privée après utilisation pour des raisons de sécurité
+              trap 'rm -rf /root/.ssh' EXIT && \
+              
+              # Accepter les hôtes inconnus pour la première connexion SSH
+              ssh-keyscan -H \$ >> /root/.ssh/known_hosts && \
+              
+              # Se connecter en SSH et effectuer un git pull
+              ssh -o StrictHostKeyChecking=no user@\$AWS_SERVER_IP << 'EOF'
+                cd /path/to/your/project  # Remplacez par le chemin de votre projet sur le serveur
+                git pull origin main  # Effectuer un git pull sur la branche main
+              EOF
+            "
+
 
 
 
