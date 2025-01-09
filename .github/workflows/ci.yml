@@ -22,10 +22,9 @@ jobs:
           chmod 600 ~/.ssh/SSHKey
           ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
 
-      # Étape 3: Se connecter au serveur SSH et effectuer un git pull
       - name: Run git pull on remote server
         run: |
-          ssh -o StrictHostKeyChecking=no $USER@$SSH_HOST << 'EOF'
+          ssh -o StrictHostKeyChecking=no aarons@$SSH_HOST << 'EOF'
             cd /home/admin/ProjetCodeSource  # Remplacez par le chemin du projet sur le serveur
             git pull origin main  # Effectuer un git pull sur la branche main
           EOF
