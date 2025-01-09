@@ -24,7 +24,7 @@ jobs:
 
       - name: Run git pull on remote server
         run: |
-          ssh ${{ secrets.SSH_USER}}@${{ secrets.SSH_HOST }} <<EOF
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} <<EOF
             cd /home/admin/ProjetCodeSource
             git pull origin main
           EOF
