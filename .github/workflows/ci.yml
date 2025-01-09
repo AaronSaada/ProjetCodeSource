@@ -25,8 +25,8 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > C:/Users/Aaron/.ssh/SSHKey.emp
-          chmod 600 C:/Users/Aaron/.ssh/SSHKeyp.emp
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > C:/Users/Aaron/.ssh
+          chmod 600 C:/Users/Aaron/.ssh
 
 
 
