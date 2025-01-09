@@ -18,13 +18,13 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "${{SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{SSH_HOST}} >> ~/.ssh/known_hosts
 
       - name: Run git pull on remote server
         run: |
-          ssh -o StrictHostKeyChecking=no aarons@$SSH_HOST << 'EOF'
+          ssh -o StrictHostKeyChecking=no aarons@${{SSH_HOST}} << 'EOF'
             cd /home/admin/ProjetCodeSource
             git pull origin main
           EOF
