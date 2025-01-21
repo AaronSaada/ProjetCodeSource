@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, TableInheritance } from 'typeorm'
+import { Animal } from '../animal/animalEntity'
 
 @Entity()
+@TableInheritance({ column: {type: "varchar", name: "type"}})
 export class User {
     @PrimaryGeneratedColumn()
     id: number
@@ -14,4 +16,7 @@ export class User {
         nullable: true,
     })
     role?: string
+    @OneToOne(() => Animal, { nullable: true })
+    @JoinColumn()
+    animal?: Animal
 }
