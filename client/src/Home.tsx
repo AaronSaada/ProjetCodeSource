@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Header } from './Header/Header'
-import './App.css'
+import { Footer } from './Footer/Footer'
+import './Home.css'
 
 export const Home = () => {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ export const Home = () => {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <Footer />
     </>
   )
 }

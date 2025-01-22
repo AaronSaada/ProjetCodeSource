@@ -25,9 +25,8 @@ export const Header = ({title}: HeaderProps) => {
                 <img src={reactLogo} className="logo react" alt="React logo" />
                 </a>
             </div>
-            <h1>{title}</h1>
+            <h1>{`${title}`} <em>{`${name}`}</em></h1>
             <input type="text" value={name} onChange={handleChange}/>
-            <p>Bonjour {name}</p>
         </>
     )
 }
