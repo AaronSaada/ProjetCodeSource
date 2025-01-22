@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Home } from "./Home"
 import { Test } from "./Test"
+import './index.css'
 
 export const App = () => {
   return (

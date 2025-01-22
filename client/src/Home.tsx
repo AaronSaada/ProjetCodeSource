@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Header } from './Header/Header'
 import { Footer } from './Footer/Footer'
+import { Link } from 'react-router-dom'
 import './Home.css'
+
 
 export const Home = () => {
   const [count, setCount] = useState(0)
@@ -13,13 +15,10 @@ export const Home = () => {
         <button onClick={() => setCount((count) => count > 0 ? count -1 : count)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <Link to="/test">
+          Cliquer ici
+        </Link>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       <Footer />
     </>
   )
