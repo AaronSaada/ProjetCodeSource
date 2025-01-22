@@ -6,7 +6,7 @@ export type HeaderProps = {
     title: string
 }
 
-export const Header = (props: HeaderProps) => {
+export const Header = ({title}: HeaderProps) => {
 
     const [name, setName] = useState("")
 
@@ -25,7 +25,7 @@ export const Header = (props: HeaderProps) => {
                 <img src={reactLogo} className="logo react" alt="React logo" />
                 </a>
             </div>
-            <h1>{props.title}</h1>
+            <h1>{title}</h1>
             <input type="text" value={name} onChange={handleChange}/>
             <p>Bonjour {name}</p>
         </>
