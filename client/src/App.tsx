@@ -1,26 +1,12 @@
-import { useState } from 'react'
-import { Header } from './Header/Header'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Home } from "./Home"
 
 export const App = () => {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <Header title="Hello"/>
-      <div className="card">
-        <button onClick={() => setCount((count) => count > 0 ? count -1 : count)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Home/>} />
+        </Routes>
+    </BrowserRouter>
+  ) 
 }
-
-export default App
