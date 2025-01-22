@@ -7,9 +7,9 @@ export const App = () => {
 
   return (
     <>
-      <Header />
+      <Header title="Hello"/>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => setCount((count) => count > 0 ? count -1 : count)}>
           count is {count}
         </button>
         <p>
