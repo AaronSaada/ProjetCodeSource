@@ -1,50 +1,84 @@
-import * as Joi from 'joi'
+import 'dotenv/config'
+
+import { Router } from 'express'
+import { userRepository } from './userRepository'
 import { createValidator } from 'express-joi-validation'
-import { Router } from "express";
-import { userRepository } from "./userRepository";
+import Joi from 'joi'
+import {
+  expressjwt,
+  Request as JWTRequest,
+} from 'express-jwt'
 
 export const userController = Router()
 
 const validator = createValidator()
 
-const querySchema = Joi.object({
+userController.use(
+  expressjwt({
+    secret: process.env.JWT_SECRET!,
+    algorithms: ['HS256'],
+  }),
+)
+
+userController.use((req: JWTRequest, res, next) => {
+  if (req.auth?.role === 'admin') {
+    next()
+  } else {
+    res.sendStatus(403)
+  }
+})
+
+userController.get('/', async (req: JWTRequest, res) => {
+  //const role = req.auth?.role
+  //if (role == 'admin') {
+  res.send(await userRepository.find())
+  //} else {
+  //  res.sendStatus(403)
+  //}
+})
+
+const createUserSchema = Joi.object({
   login: Joi.string().required(),
   password: Joi.string().required(),
-  role: Joi.string()
+  role: Joi.string().valid('user', 'admin').optional(),
 })
-
-const getSchema = Joi.object({
-    id: Joi.number().required()
-})
-
-userController.get('/' , async (req, res) => {
-    
-    // if(req.body.role == "admin"){
-        res.send(await userRepository.find())
-    // } else{
-    //     res.send("Vous n'avez pas les droits pour effectuer cette action.")
-    // }
-    
-})
-
-userController.post('/', validator.body(querySchema), async (req, res) => {
-
-    try{
-        res.send(await userRepository.save({
-            login: req.body.login,
-            password: req.body.password,
-            role: req.body.role
-        }));
-    } catch(error: any){
-        res.status(400).send({err: "L'utilisateur existe déjà", error : error.message, detail: error.details})
+userController.post(
+  '/',
+  validator.body(createUserSchema),
+  async (req, res) => {
+    try {
+      res.send(
+        await userRepository.save({
+          login: req.body.login,
+          password: req.body.password,
+          role: req.body.role ?? 'user',
+        }),
+      )
+    } catch (error: any) {
+      res.status(400).send({
+        error: error.message,
+        detail: error.detail,
+      })
     }
-    
+  },
+)
+
+const getUserSchema = Joi.object({
+  id: Joi.number().required(),
 })
-
-userController.get('/:id', validator.params(getSchema), async (req, res) => {
-
-    res.send(await userRepository.findOneBy({
-        id:Number(req.params.id),
-    }))
-
-})
+userController.get(
+  '/:id',
+  validator.params(getUserSchema),
+  async (req: JWTRequest, res) => {
+    const id = Number(req.params.id)
+    //if (req.auth?.role === 'admin' || req.auth?.id === id) {
+    res.send(
+      await userRepository.findOneBy({
+        id,
+      }),
+    )
+    //} else {
+    //  res.sendStatus(403)
+    //}
+  },
+)
