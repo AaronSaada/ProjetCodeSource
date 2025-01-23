@@ -2,6 +2,7 @@
 *::before,
 *::after{
   box-sizing: border-box;
+  border: none;
   margin: 0;
   padding: 0;
   font-size: inherit;
@@ -13,16 +14,40 @@
 :root{
  --primary-color: red;
  --secondary-color: whitesmoke;
- --purple-color: #f4f4f4;
- --orange-color: #f4f4f4;
- --yellow-color: #f4f4f4;
+ --purple-color: #5c0064;
+ --orange-color: #ffa600;
+ --yellow-color: #ffea00;
 }
 
-body{
-  height: 100vh;
+.App{
   width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+header, footer{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 header{
-  height: 200px;
+  gap: 5rem;
+  background-color: rgb(255, 208, 120);
+}
+
+footer{
+  background-color: rgb(212, 158, 58);
+}
+
+.children-container{
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

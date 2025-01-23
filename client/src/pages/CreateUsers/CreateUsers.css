@@ -1,11 +1,47 @@
+@import '../../index.css';
+
 .create-users-form{
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.166);
+    border-radius: 20px;
+    padding: 20px 40px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    gap: 2rem;
+}
 
+.create-users-form-password, .create-users-form-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.create-users-form label{
+    font-size: 1.3rem;
+}
+
+.create-users-form input{
+    border-radius: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.274);
+    padding: 10px 20px;
 }
 
 .create-users-form-checkbox{
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-users-form-checkbox label{
+    margin-left: 1rem;
+}
+
+button{
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--orange-color);
 }
