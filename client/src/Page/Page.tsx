@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import { Header } from "../Header/Header"
 import { Footer } from "../Footer/Footer"
+import "./Page.css"
 
 export type PageProps = {
     title: string;

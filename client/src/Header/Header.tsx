@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react'
+import "./Header.css"
 
 export type HeaderProps = {
     title: string
@@ -14,9 +15,9 @@ export const Header = ({title}: HeaderProps) => {
     };
 
     return (
-        <>
+        <header>
             <h1>{`${title}`} <em>{`${name}`}</em></h1>
             <input type="text" value={name} onChange={handleChange}/>
-        </>
+        </header>
     )
 }
