@@ -1,12 +1,12 @@
 import { AppDataSource } from "./dataSource"
 import { Animal } from "./modules/animal/animalEntity"
 import { animalRepository } from "./modules/animal/animalRepository"
-import { Client } from "./modules/client/clientEntity"
-import { Company } from "./modules/company/companyEntity"
+// import { Client } from "./modules/client/clientEntity"
+// import { Company } from "./modules/company/companyEntity"
 import { User } from "./modules/user/userEntity"
 import { userRepository } from "./modules/user/userRepository"
-import { clientRepository } from "./modules/client/clientRepository"
-import { companyRepository } from "./modules/company/companyRepository"
+// import { clientRepository } from "./modules/client/clientRepository"
+// import { companyRepository } from "./modules/company/companyRepository"
 
 const test = async () => {
 
@@ -19,25 +19,26 @@ const test = async () => {
     await animalRepository.save(animal)
 
     const user = new User()
-    user.login = "Plop6"
-    user.password = "azerty"
+    user.login = "Admin"
+    user.password = "admin"
     user.animal = animal
+    user.role = "Admin"
 
     await userRepository.save(user)
 
-    const client = new Client()
-    client.login = "Client1"
-    client.password = "azerty"
-    client.adress = "1 Rue de la Paix"
+    // const client = new Client()
+    // client.login = "Client1"
+    // client.password = "azerty"
+    // client.adress = "1 Rue de la Paix"
 
-    await clientRepository.save(client)
+    // await clientRepository.save(client)
 
-    const company = new Company()
-    company.login = "Company1"
-    company.password = "azerty"
-    company.companyName = "Microsoft"
+    // const company = new Company()
+    // company.login = "Company1"
+    // company.password = "azerty"
+    // company.companyName = "Microsoft"
 
-    await companyRepository.save(company)
+    // await companyRepository.save(company)
 
 }
 

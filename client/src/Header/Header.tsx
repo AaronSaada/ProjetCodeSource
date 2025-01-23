@@ -1,6 +1,4 @@
 import { ChangeEvent, useState } from 'react'
-import "./Header.css"
-
 export type HeaderProps = {
     title: string
 }
