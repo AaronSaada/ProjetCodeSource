@@ -19,11 +19,11 @@ const getSchema = Joi.object({
 
 userController.get('/' , async (req, res) => {
     
-    if(req.body.role == "admin"){
+    // if(req.body.role == "admin"){
         res.send(await userRepository.find())
-    } else{
-        res.send("Vous n'avez pas les droits pour effectuer cette action.")
-    }
+    // } else{
+    //     res.send("Vous n'avez pas les droits pour effectuer cette action.")
+    // }
     
 })
 

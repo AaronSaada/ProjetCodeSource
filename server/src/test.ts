@@ -22,23 +22,9 @@ const test = async () => {
     user.login = "Admin"
     user.password = "admin"
     user.animal = animal
-    user.role = "Admin"
+    user.role = "admin"
 
     await userRepository.save(user)
-
-    // const client = new Client()
-    // client.login = "Client1"
-    // client.password = "azerty"
-    // client.adress = "1 Rue de la Paix"
-
-    // await clientRepository.save(client)
-
-    // const company = new Company()
-    // company.login = "Company1"
-    // company.password = "azerty"
-    // company.companyName = "Microsoft"
-
-    // await companyRepository.save(company)
 
 }
 

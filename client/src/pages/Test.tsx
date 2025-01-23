@@ -1,5 +1,4 @@
-import { Page } from './Page/Page'
-import './Home.css'
+import { Page } from '../components/Page/Page'
 
 export const Test = () => {
   return (
