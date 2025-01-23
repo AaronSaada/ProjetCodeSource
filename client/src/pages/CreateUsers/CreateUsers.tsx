@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { Page } from '../../components/Page/Page'
+import { useNavigate } from 'react-router'
 import './CreateUsers.css'
 import axios from 'axios'
 
 export const CreateUsers = () => {
+
+  const navigate = useNavigate();
 
   const [login, setLogin] = useState()
   const [password, setPassword] = useState()
@@ -21,6 +24,7 @@ export const CreateUsers = () => {
                 password,
                 role: isAdmin ? "admin" : "user"
               });
+              navigate("/users");
             }
           }
         >
