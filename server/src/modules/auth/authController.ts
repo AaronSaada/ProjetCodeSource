@@ -19,8 +19,7 @@ authController.post(
   async (req, res) => {
     const user = await userRepository.findOneBy({
       login: req.body.login,
-      password: req.body.password,
-      role: req.body.role
+      password: req.body.password
     })
     if (user) {
       const token = jwt.sign(
@@ -28,7 +27,7 @@ authController.post(
           id: user.id,
           role: user.role
         },
-        'shhhhhhared-secret',
+        process.env.JWT_SECRET!,
         {
           algorithm: 'HS256',
         },
