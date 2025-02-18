@@ -9,7 +9,7 @@ export const Home = () => {
   return (
     <Page title='Accueil'>
       <div className="card">
-        <button onClick={() => setCount((count) => count > 0 ? count -1 : count)}>
+        <button className='btn-primary' onClick={() => setCount((count) => count > 0 ? count -1 : count)}>
           count is {count}
         </button>
         <Link to="/test">

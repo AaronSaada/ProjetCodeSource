@@ -3,7 +3,7 @@ export type HeaderProps = {
     title: string
 }
 
-export const Header = ({title}: HeaderProps) => {
+export const Header = () => {
 
     return (
         <header className='bg-amber-600'>
