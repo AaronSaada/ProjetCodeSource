@@ -6,7 +6,7 @@ export type HeaderProps = {
 export const Header = ({title}: HeaderProps) => {
 
     return (
-        <header>
+        <header className='bg-amber-600'>
             <ul>
                 <Link to='/'>Accueil</Link>
             </ul>

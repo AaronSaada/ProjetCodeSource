@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 *,
 *::before,
 *::after{
@@ -37,7 +39,7 @@ header, footer{
 
 header{
   gap: 5rem;
-  background-color: rgb(255, 208, 120);
+  /* background-color: rgb(255, 208, 120); */
 }
 
 footer{
